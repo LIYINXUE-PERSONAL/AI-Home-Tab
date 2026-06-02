@@ -73,8 +73,20 @@ async function boot() {
   await renderQuickLinks();
   bindEvents();
 
-  elements.searchInput.focus();
+  focusSearchInputOnLoad();
   resizeSearchInput();
+}
+
+function focusSearchInputOnLoad() {
+  focusSearchInput();
+  requestAnimationFrame(focusSearchInput);
+  window.setTimeout(focusSearchInput, 100);
+}
+
+function focusSearchInput() {
+  elements.searchInput.focus({ preventScroll: true });
+  const selectionPosition = elements.searchInput.value.length;
+  elements.searchInput.setSelectionRange(selectionPosition, selectionPosition);
 }
 
 function bindEvents() {
