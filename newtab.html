@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI New Tab</title>
+    <link rel="stylesheet" href="src/styles.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero" aria-label="AI New Tab">
+        <div class="hero-inner">
+          <div class="top-bar">
+            <h1 id="greeting">Hey there, what's on your mind today?</h1>
+            <button id="settingsButton" class="icon-button glass-button" type="button" title="Settings" aria-label="Settings">
+              <span aria-hidden="true">...</span>
+            </button>
+          </div>
+
+          <div class="search-area">
+            <form id="searchForm" class="search-box" autocomplete="off">
+              <label class="visually-hidden" for="searchInput">Search, open a URL, or ask ChatGPT</label>
+              <textarea id="searchInput" rows="1" spellcheck="true" placeholder="Search, open a site, or ask ChatGPT"></textarea>
+
+              <div class="search-actions">
+                <button id="aiShortcutButton" class="icon-button subtle-button" type="button" title="Ask ChatGPT" aria-label="Ask ChatGPT">
+                  <span aria-hidden="true">✦</span>
+                </button>
+                <button id="modeButton" class="mode-button" type="button" title="Current mode">
+                  <span id="modeLabel">Smart</span>
+                  <span aria-hidden="true" class="chevron">⌄</span>
+                </button>
+                <div id="modeMenu" class="mode-menu" hidden>
+                  <button type="button" data-mode="smart">
+                    <span class="mode-option-icon" aria-hidden="true">✦</span>
+                    <span class="mode-option-text">
+                      <span class="mode-option-title">Smart</span>
+                      <span class="mode-option-subtitle">Routes questions to AI and searches ordinary queries</span>
+                    </span>
+                  </button>
+                  <button type="button" data-mode="search">
+                    <span class="mode-option-icon" aria-hidden="true">⌕</span>
+                    <span class="mode-option-text">
+                      <span class="mode-option-title">Search</span>
+                      <span class="mode-option-subtitle">Prioritizes Google before AI for every query</span>
+                    </span>
+                  </button>
+                  <button type="button" data-mode="ai">
+                    <span class="mode-option-icon" aria-hidden="true">✦</span>
+                    <span class="mode-option-text">
+                      <span class="mode-option-title">Ask AI</span>
+                      <span class="mode-option-subtitle">Prioritizes ChatGPT before search for every query</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <div id="suggestions" class="suggestions" role="listbox" aria-label="Suggestions" hidden></div>
+          </div>
+
+          <section class="quick-links" aria-label="Quick access">
+            <div id="quickLinksRow" class="quick-links-row"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div id="shortcutModal" class="modal-backdrop" hidden>
+      <form id="shortcutForm" class="dialog" autocomplete="off">
+        <div class="dialog-header">
+          <h2 id="shortcutDialogTitle">Add Shortcut</h2>
+          <button class="icon-button quiet-button" id="closeShortcutModalButton" type="button" title="Close" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <input type="hidden" id="shortcutId">
+        <label>
+          <span>Name</span>
+          <input id="shortcutTitle" type="text" required maxlength="48">
+        </label>
+        <label>
+          <span>URL</span>
+          <input id="shortcutUrl" type="text" inputmode="url" required placeholder="https://example.com">
+        </label>
+        <div class="dialog-actions">
+          <button id="deleteShortcutButton" class="secondary-button danger-button" type="button" hidden>Remove</button>
+          <button class="secondary-button" id="cancelShortcutButton" type="button">Cancel</button>
+          <button class="primary-button" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="settingsModal" class="modal-backdrop" hidden>
+      <form id="settingsForm" class="dialog" autocomplete="off">
+        <div class="dialog-header">
+          <h2>Settings</h2>
+          <button class="icon-button quiet-button" id="closeSettingsButton" type="button" title="Close" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <label>
+          <span>Greeting name</span>
+          <input id="customGreetingName" type="text" maxlength="80" placeholder="Use profile email when empty">
+        </label>
+        <label class="checkbox-row">
+          <input id="historyAutocomplete" type="checkbox">
+          <span>History autocomplete</span>
+        </label>
+        <button id="resetDismissedRecommendationsButton" class="secondary-button" type="button">Reset Dismissed Recommendations</button>
+        <div class="dialog-actions">
+          <button class="secondary-button" id="cancelSettingsButton" type="button">Cancel</button>
+          <button class="primary-button" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+
+    <script type="module" src="src/main.js?v=0.1.22"></script>
+  </body>
+</html>

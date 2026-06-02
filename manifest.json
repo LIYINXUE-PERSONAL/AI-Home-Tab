@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "AI New Tab",
+  "description": "A smart new tab page with browser-like routing, history autocomplete, and ChatGPT question handling.",
+  "version": "0.1.1",
+  "icons": {
+    "128": "assets/icons/icon-128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "permissions": [
+    "storage",
+    "history",
+    "identity",
+    "identity.email"
+  ]
+}
